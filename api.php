@@ -22,6 +22,13 @@ if($type === null)
 $result = getResult($type);
 echo $result;
 
+// if (isset($_SERVER['HTTP_JMENO'], $_SERVER['HTTP_PRIJMENI'])) {
+//     $jmenoValue = $_SERVER['HTTP_JMENO'];
+//     $prijmeniValue = $_SERVER['HTTP_PRIJMENI'];
+//     $headerArray = array("jmeno" => $jmenoValue, "prijmeni" => $prijmeniValue);
+//     header('Content-Type: application/json');
+//     echo json_encode($headerArray);
+// }
 
 function getResult($type)
 {
@@ -40,6 +47,7 @@ function getResult($type)
             $apiResult = getRaynetApiResult($url);
             
             sendToDiscord(getTasks($apiResult), '4fin');
+
             return getTasks($apiResult, 'json');
 
         default:
