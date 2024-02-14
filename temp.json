@@ -1,0 +1,175 @@
+{
+    "success": true,
+    "totalCount": 3,
+    "data": [{
+        "_entityName": "Task",
+        "id": 3,
+        "title": "Zavolat a nabidnout ji pojistku domu (muzem i bez Hypo)",
+        "personal": false,
+        "status": "SCHEDULED",
+        "priority": "DEFAULT",
+        "category": null,
+        "activity": null,
+        "company": {
+            "id": 88,
+            "name": "Tomášková Petra"
+        },
+        "person": null,
+        "lead": null,
+        "project": null,
+        "businessCase": {
+            "id": 9,
+            "code": "OP-24-005",
+            "name": "Pojištění domu (Kostelec)"
+        },
+        "offer": null,
+        "salesOrder": null,
+        "scheduledFrom": "2024-02-09 00:00",
+        "scheduledTill": "2024-02-09 23:59",
+        "completed": null,
+        "description": null,
+        "solution": null,
+        "tags": [],
+        "rowInfo.createdAt": "2024-02-02 10:23",
+        "rowInfo.createdBy": "tomas.janu@4fin.cz",
+        "rowInfo.updatedAt": "2024-02-13 11:34",
+        "rowInfo.updatedBy": "tomas.janu@4fin.cz",
+        "rowInfo.rowAccess": null,
+        "rowInfo.rowState": null,
+        "securityLevel": {
+            "id": 1,
+            "name": "Sdílená"
+        },
+        "_version": 4,
+        "customFields": {},
+        "participants": [{
+            "owner": true,
+            "role": "FROM",
+            "name": "Tomáš Janů",
+            "person": 2,
+            "company": null,
+            "lead": null
+        }, {
+            "owner": false,
+            "role": null,
+            "name": "Tomáš Janů",
+            "person": 2,
+            "company": null,
+            "lead": null
+        }],
+        "recurrence": null,
+        "deadline": "2024-02-14 21:00"
+    }, {
+        "_entityName": "Task",
+        "id": 16,
+        "title": "Zkontrolovat jestli plati stale ze chce hypo",
+        "personal": false,
+        "status": "SCHEDULED",
+        "priority": "DEFAULT",
+        "category": null,
+        "activity": null,
+        "company": {
+            "id": 88,
+            "name": "Tomášková Petra"
+        },
+        "person": null,
+        "lead": null,
+        "project": null,
+        "businessCase": null,
+        "offer": null,
+        "salesOrder": null,
+        "scheduledFrom": "2024-02-09 00:00",
+        "scheduledTill": "2024-02-09 23:59",
+        "completed": null,
+        "description": null,
+        "solution": null,
+        "tags": [],
+        "rowInfo.createdAt": "2024-02-07 14:34",
+        "rowInfo.createdBy": "tomas.janu@4fin.cz",
+        "rowInfo.updatedAt": "2024-02-13 11:34",
+        "rowInfo.updatedBy": "tomas.janu@4fin.cz",
+        "rowInfo.rowAccess": null,
+        "rowInfo.rowState": null,
+        "securityLevel": {
+            "id": 1,
+            "name": "Sdílená"
+        },
+        "_version": 3,
+        "customFields": {},
+        "participants": [{
+            "owner": true,
+            "role": "FROM",
+            "name": "Tomáš Janů",
+            "person": 2,
+            "company": null,
+            "lead": null
+        }, {
+            "owner": false,
+            "role": null,
+            "name": "Tomáš Janů",
+            "person": 2,
+            "company": null,
+            "lead": null
+        }],
+        "recurrence": null,
+        "deadline": "2024-02-16 23:59"
+    }, {
+        "_entityName": "Task",
+        "id": 25,
+        "title": "Zavolat Libuši a zainvestovat + Signi",
+        "personal": false,
+        "status": "SCHEDULED",
+        "priority": "DEFAULT",
+        "category": null,
+        "activity": null,
+        "company": {
+            "id": 29,
+            "name": "Janebová Libuše"
+        },
+        "person": null,
+        "lead": null,
+        "project": null,
+        "businessCase": {
+            "id": 20,
+            "code": "OP-24-016",
+            "name": "Dluhopisový fond"
+        },
+        "offer": null,
+        "salesOrder": null,
+        "scheduledFrom": "2024-02-14 00:00",
+        "scheduledTill": "2024-02-14 23:59",
+        "completed": null,
+        "description": null,
+        "solution": null,
+        "tags": [],
+        "rowInfo.createdAt": "2024-02-12 20:20",
+        "rowInfo.createdBy": "tomas.janu@4fin.cz",
+        "rowInfo.updatedAt": "2024-02-14 11:39",
+        "rowInfo.updatedBy": "tomas.janu@4fin.cz",
+        "rowInfo.rowAccess": null,
+        "rowInfo.rowState": null,
+        "securityLevel": {
+            "id": 1,
+            "name": "Sdílená"
+        },
+        "_version": 3,
+        "customFields": {},
+        "participants": [{
+            "owner": true,
+            "role": "FROM",
+            "name": "Tomáš Janů",
+            "person": 2,
+            "company": null,
+            "lead": null
+        }, {
+            "owner": false,
+            "role": null,
+            "name": "Tomáš Janů",
+            "person": 2,
+            "company": null,
+            "lead": null
+        }],
+        "recurrence": null,
+        "deadline": "2024-02-13 22:00"
+    }]
+}

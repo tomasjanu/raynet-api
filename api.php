@@ -1,5 +1,6 @@
 <?php
 require 'config.php';
+require 'fnc.php';
 
 $type = isset($_GET['type']) ? $_GET['type'] : 'dueTasks';
 
@@ -15,8 +16,11 @@ if($type === null)
 }
 
 // Vytisknutí odpovědi
-echo getResult($type);
 
+$result = getResult($type);
+echo $result;
+
+sendToDiscord($result, '4fin');
 
 function getResult($type)
 {
@@ -32,12 +36,33 @@ function getResult($type)
             $scheduledTill = date('Y-m-d H:i', strtotime('tomorrow') - 1);
             $url = 'https://app.raynet.cz/api/v2/task/?scheduledTill[LE]=' . urlencode($scheduledTill) . '&status=SCHEDULED';
 
-            $result = getRaynetApiResult($url);
-            return $result;
+            $apiResult = getRaynetApiResult($url);
+
+            return getTasksString($apiResult);
 
         default:
             return null;
     }
+}
+
+function getTasksString($result)
+{
+    $tasks = json_decode($result, true);
+
+    // Initialize an empty string
+    $message = "NEZAPOMEŇ DNES:\n";
+
+    // Loop through the data array
+    foreach ($tasks['data'] as $item) {
+        // Access the title and company name
+        $title = $item['title'];
+        $companyName = $item['company']['name'];
+        $scheduledTill = $item['scheduledTill'];
+
+        $message .= "($companyName) $title - do: $scheduledTill\n";
+    }
+
+    return $message;
 }
 
 function getRaynetApiResult($url)
