@@ -6,6 +6,7 @@ require 'config.php';
 require 'fnc.php';
 
 $type = isset($_GET['type']) ? $_GET['type'] : 'dueTasks';
+$sendDiscord = isset($_GET['sendDiscord']) ? $_GET['sendDiscord'] : false;
 
 
 if($type === null)
@@ -28,6 +29,8 @@ echo $result;
 
 function getResult($type)
 {
+    GLOBAL $sendDiscord;
+
     if($type === null)
     {
         return null;
@@ -42,7 +45,10 @@ function getResult($type)
 
             $apiResult = getRaynetApiResult($url);
             
-            sendToDiscord(getTasks($apiResult), '4fin');
+            if($sendDiscord)
+            {
+                sendToDiscord(getTasks($apiResult), '4fin');
+            }
 
             return getTasks($apiResult, 'json');
 
