@@ -1,4 +1,7 @@
 <?php
+
+header('Content-Type: application/json');
+
 require 'config.php';
 require 'fnc.php';
 
@@ -16,11 +19,9 @@ if($type === null)
 }
 
 // Vytisknutí odpovědi
-
 $result = getResult($type);
 echo $result;
 
-sendToDiscord($result, '4fin');
 
 function getResult($type)
 {
@@ -37,20 +38,21 @@ function getResult($type)
             $url = 'https://app.raynet.cz/api/v2/task/?scheduledTill[LE]=' . urlencode($scheduledTill) . '&status=SCHEDULED';
 
             $apiResult = getRaynetApiResult($url);
-
-            return getTasksString($apiResult);
+            
+            sendToDiscord(getTasks($apiResult), '4fin');
+            return getTasks($apiResult, 'json');
 
         default:
             return null;
     }
 }
 
-function getTasksString($result)
+function getTasks($result, $type = 'string')
 {
     $tasks = json_decode($result, true);
 
-    // Initialize an empty string
-    $message = "NEZAPOMEŇ DNES:\n";
+    // Initialize an empty array for messages
+    $messages = array();
 
     // Loop through the data array
     foreach ($tasks['data'] as $item) {
@@ -59,10 +61,21 @@ function getTasksString($result)
         $companyName = $item['company']['name'];
         $scheduledTill = $item['scheduledTill'];
 
-        $message .= "($companyName) $title - do: $scheduledTill\n";
+        // Create a message object and add it to the messages array
+        $messageObject = new stdClass();
+        $messageObject->message = "($companyName) $title - do: $scheduledTill";
+        $messages[] = $messageObject;
     }
 
-    return $message;
+    // If type is 'json', convert the messages to a JSON string
+    if ($type == 'json') {
+        return json_encode($messages);
+    }
+
+    // Otherwise, return the messages as a string
+    return implode("\n", array_map(function($messageObject) {
+        return $messageObject->message;
+    }, $messages));
 }
 
 function getRaynetApiResult($url)
