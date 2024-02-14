@@ -47,3 +47,34 @@ function sendToDiscord($message, $channel = null)
          }
      }
 }
+
+function getRaynetApiResult($url)
+{
+    $username = get_env_variable('RAYNET_EMAIL');
+    $apiKey = get_env_variable('RAYNET_API_KEY');
+    $instanceName = get_env_variable('RAYNET_WORKSPACE_NAME');
+
+    // Inicializace cURL
+    $ch = curl_init();
+
+    // Nastavení cURL možností
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $apiKey); // Autentizace
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'X-Instance-Name: ' . $instanceName, // Přidání vlastní hlavičky
+    ));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // Vrátí výsledek jako řetězec
+
+    // Provedení volání
+    $response = curl_exec($ch);
+
+    // Kontrola chyby
+    if(curl_errno($ch)){
+        echo 'cURL error: ' . curl_error($ch);
+    }
+
+    // Ukončení session
+    curl_close($ch);
+
+    return $response;
+}

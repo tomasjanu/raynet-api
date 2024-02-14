@@ -7,10 +7,6 @@ require 'fnc.php';
 
 $type = isset($_GET['type']) ? $_GET['type'] : 'dueTasks';
 
-// Základní nastavení
-$username = 'tomas.janu@4fin.cz'; // Vaše uživatelské jméno
-$apiKey = get_env_variable('API_KEY');
-$instanceName = 'tomasjanuporadce'; // Název vaší instance
 
 if($type === null)
 {
@@ -54,7 +50,6 @@ function getResult($type)
             return null;
     }
 }
-
 function getTasks($result, $type = 'string')
 {
     $tasks = json_decode($result, true);
@@ -84,33 +79,4 @@ function getTasks($result, $type = 'string')
     return implode("\n", array_map(function($messageObject) {
         return $messageObject->message;
     }, $messages));
-}
-
-function getRaynetApiResult($url)
-{
-    GLOBAL $username, $apiKey, $instanceName;
-
-    // Inicializace cURL
-    $ch = curl_init();
-
-    // Nastavení cURL možností
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $apiKey); // Autentizace
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        'X-Instance-Name: ' . $instanceName, // Přidání vlastní hlavičky
-    ));
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // Vrátí výsledek jako řetězec
-
-    // Provedení volání
-    $response = curl_exec($ch);
-
-    // Kontrola chyby
-    if(curl_errno($ch)){
-        echo 'cURL error: ' . curl_error($ch);
-    }
-
-    // Ukončení session
-    curl_close($ch);
-
-    return $response;
 }
